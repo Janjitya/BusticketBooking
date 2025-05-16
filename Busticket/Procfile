@@ -1,1 +1,1 @@
-web: gunicorn Busticket.wsgi
+web: gunicorn Busticket.wsgi --bind 0.0.0.0:$PORT
