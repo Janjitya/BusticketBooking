@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = 'django-insecure-q3ew7@q_16)dvnf3n0bgu+f4d$1+_bg(k$$ra5p@p3j-%usb*+'
 
 # 'django-insecure-q3ew7@q_16)dvnf3n0bgu+f4d$1+_bg(k$$ra5p@p3j-%usb*+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', "False").lower() == "true"
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -87,9 +87,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-database_url = os.environ.get("DATABASE_URL")
+# database_url = "postgresql://busticket_booking_db_user:CadWWv5k0IB2P6hIpHWRrS7eTM4ahTVR@dpg-d0ic1cvfte5s73fq1eug-a.singapore-postgres.render.com/busticket_booking_db"
 
-DATABASES['default'] = dj_database_url.parse(database_url)
+# DATABASES['default'] = dj_database_url.parse(database_url)
 
 
 
