@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer, ProfileSerializer, BusSerializer, ScheduleSerializer, BookingSerializer
 from django.conf import settings 
+from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate, get_user_model
 from rest_framework import generics, status
 from rest_framework.response import Response
@@ -46,6 +47,23 @@ class LoginView(generics.GenericAPIView):
                 },
                 status=status.HTTP_401_UNAUTHORIZED
             )
+
+class GetAllUsers(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAdminUser]
+
+@api_view(['GET'])
+def check_username_exists(request):
+    username = request.GET.get('username', '')
+    exists = User.objects.filter(username=username).exists()
+    print(username)
+    if exists:
+        return Response({'message':'user already exists',
+                         'data':exists})
+    
+    return Response({'message':'username available',
+                     'data': exists})
 
 class ProfileView(APIView):
 
